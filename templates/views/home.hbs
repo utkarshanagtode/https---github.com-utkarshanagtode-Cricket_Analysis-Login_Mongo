@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <style>
+      /* Add styles for the popup */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #f8d7da; /* Red background color, change as needed */
+        color: #721c24; /* Dark text color, change as needed */
+        border: 1px solid #f5c6cb; /* Border color, change as needed */
+        border-radius: 5px;
+        width: 300px;
+        text-align: center;
+        z-index: 1000;
+      }
+    </style>
+</head>
+
 
 <body>
 ​
@@ -15,9 +36,32 @@
 <img class="svgtop" src="img/Cricket.svg"/>
 
 
+ <div class="popup" id="popup">
+      {{#if message}}
+        <p>{{message}}</p>
+      {{/if}}
+    </div>
+
+
 <footer>
   {{>footer}}
 </footer>
+
+<script>
+  // Check if there is a message, and display the popup
+  window.onload = function() {
+    const message = "{{message}}";
+    if (message) {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';
+
+      // Automatically hide the popup after a certain time (e.g., 3000 milliseconds or 3 seconds)
+      setTimeout(function() {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+  };
+</script>
 
 </body>
 </html>
